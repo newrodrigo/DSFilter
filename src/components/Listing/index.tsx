@@ -1,32 +1,19 @@
-import './styles.css';
+import "./styles.css";
+import { ProductDTO } from "../../models/products";
 
-export default function Listing() {
+type Props = {
+  product: ProductDTO[];
+};
+
+export default function Listing({ product }: Props) {
   return (
     <div className="dsf-card-listing-container dsf-mb20">
-      <div className="dsf-card-listing">
-        <p>PC Gamer Pro</p>
-        <h4>R$ 1200.00</h4>
-      </div>
-      <div className="dsf-card-listing">
-        <p>PC Gamer Pro</p>
-        <h4>R$ 1200.00</h4>
-      </div>
-      <div className="dsf-card-listing">
-        <p>PC Gamer Pro</p>
-        <h4>R$ 1200.00</h4>
-      </div>
-      <div className="dsf-card-listing">
-        <p>PC Gamer Pro</p>
-        <h4>R$ 1200.00</h4>
-      </div>
-      <div className="dsf-card-listing">
-        <p>PC Gamer Pro</p>
-        <h4>R$ 1200.00</h4>
-      </div>
-      <div className="dsf-card-listing">
-        <p>PC Gamer Pro</p>
-        <h4>R$ 1200.00</h4>
-      </div>
+      {product.map((product) => (
+        <div key={product.id} className="dsf-card-listing">
+          <p>{product.name}</p>
+          <h4>R$ {product.price.toFixed(2)}</h4>
+        </div>
+      ))}
     </div>
   );
 }
