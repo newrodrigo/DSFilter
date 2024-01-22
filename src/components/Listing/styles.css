@@ -1,0 +1,22 @@
+.dsf-card-listing-container {
+  background-color: var(--dsf-color-bg-tertiary);
+  padding: 10px 20px 20px 20px;
+  border-radius: 5px;
+}
+.dsf-card-listing {
+  border-radius: 5px;
+  border: 1px solid #55bc04;
+  background: #fff;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.dsf-card-listing p {
+  color: var(--dsf-color-font-secondary);
+  font-size: 12px;
+  font-weight: 400;
+}
+.dsf-card-listing h4 {
+  color: var(--dsf-color-font-tertiary);
+  font-size: 16px;
+}

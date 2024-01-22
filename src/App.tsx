@@ -1,8 +1,14 @@
-function App() {
+import "./index.css";
+import Header from "./components/Header";
+import ListingBody from "./components/ListingBody";
 
+function App() {
   return (
-    <h1>DSFilter</h1>
-  )
+    <>
+      <Header />
+      <ListingBody />
+    </>
+  );
 }
 
-export default App
+export default App;
