@@ -1,34 +1,27 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./styles.css";
-import { findByPrice } from "../../services/product-service"; // Certifique-se de importar ProductDTO
-import Listing from "../Listing";
-import { ProductDTO } from "../../models/products";
-import { ContextProductCount } from "../../utils/context-product";
+
+type Props = {
+  onFilter: (min: number, max: number) => void;
+};
 
 type FormData = {
   minPrice?: number;
   maxPrice?: number;
 };
 
-export default function Filter() {
+export default function Filter({ onFilter }: Props) {
   const [formData, setFormData] = useState<FormData>({});
-  const [searchResults, setSearchResults] = useState<ProductDTO[]>([]);
-
-  const { setContextProductCount } = useContext(ContextProductCount);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value, name } = event.target;
+    const value = event.target.value;
+    const name = event.target.name;
     setFormData({ ...formData, [name]: value });
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const results = findByPrice(
-      formData.minPrice || 0,
-      formData.maxPrice || Number.MAX_VALUE
-    );
-    setSearchResults(results);
-    setContextProductCount(results.length);
+    onFilter(formData.minPrice || 0, formData.maxPrice || Number.MAX_VALUE);
   }
 
   function handleCleanForm() {
@@ -65,7 +58,6 @@ export default function Filter() {
           </div>
         </form>
       </div>
-      <Listing product={searchResults} />
     </>
   );
 }
